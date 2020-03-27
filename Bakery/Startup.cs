@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 using Bakery.Models;
 
 namespace Bakery
@@ -28,6 +29,9 @@ namespace Bakery
         .AddDbContext<BakeryContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 
+      services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<BakeryContext>()
+        .AddDefaultTokenProviders();
     }
 
     public void Configure(IApplicationBuilder app)
@@ -35,6 +39,8 @@ namespace Bakery
       app.UseStaticFiles();
 
       app.UseDeveloperExceptionPage();
+
+      app.UseAuthentication();
 
       app.UseMvc(routes =>
       {
@@ -45,7 +51,7 @@ namespace Bakery
 
       app.Run(async (context) =>
       {
-        await context.Response.WriteAsync("Something went wrong!");
+        await context.Response.WriteAsync("Oops! There was an error on our end. Sorry!");
       });
     }
   }
