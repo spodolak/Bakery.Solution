@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Bakery.Models.Treat
+
+<h4>ADD TREAT</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description)
+  <br>
+  <input type="submit" value="ADD TREAT" class="btn-default" />
+}
