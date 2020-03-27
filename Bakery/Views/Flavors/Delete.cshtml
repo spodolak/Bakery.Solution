@@ -3,3 +3,14 @@
 }
 
 @using Bakery.Models;
+@model Bakery.Models.Flavor;
+
+<h1>DELETE THIS FLAVOR?</h1>
+<h4>@Html.DisplayFor(model => model.Description)</h4>
+
+@using (Html.BeginForm())
+{
+  <input type="submit" value="CONFIRM DELETION" class="btn-block"/>
+}
+
+@Html.ActionLink("SHOW ALL FLAVORS", "Index", "Flavors", null, new { @class = "btn-block" })

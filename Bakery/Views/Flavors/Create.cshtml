@@ -3,3 +3,14 @@
 }
 
 @using Bakery.Models;
+@model Bakery.Models.Flavor;
+
+<h1>ADD A NEW FLAVOR CATEGORY!</h1>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description)
+  <br>
+  <input type="submit" class="btn-block" value="ADD FLAVOR" />
+}
+@Html.ActionLink("VIEW ALL FLAVORS", "Index", "Flavors",  null, new { @class = "btn-block" })
