@@ -1,0 +1,13 @@
+<div id="header">
+  <p>Doctor's Office</p>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+        @Html.ActionLink("Doctors", "Index", "Doctors", null, new { @class="nav-item nav-link" } )
+        @Html.ActionLink("Patients", "Index", "Patients", null, new { @class="nav-item nav-link" } )
+        <a class="nav-item nav-link" href="#">About</a>
+      </div>
+    </div>
+  </nav>
+</div>
