@@ -11,5 +11,7 @@
   @Html.LabelFor(model => model.Description)
   @Html.TextBoxFor(model => model.Description)
   <br>
+  @Html.Label("Select Flavor")
+  @Html.DropDownList("FlavorId")
   <input type="submit" value="ADD TREAT" class="btn-default" />
 }
