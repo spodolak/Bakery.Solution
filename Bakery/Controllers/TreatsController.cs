@@ -1,24 +1,34 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Bakery.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
+using Bakery.Models;
 
 namespace Bakery.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly BakeryContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public TreatsController(BakeryContext db)
+    public TreatsController(UserManager<ApplicationUser> userManager, BakeryContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      return View(_db.Treats.ToList());
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      return View(userTreats);
     }
 
     public ActionResult Create()
@@ -28,8 +38,11 @@ namespace Bakery.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Treat treat, int FlavorId)
+    public async Task<ActionResult> Create(Treat treat, int FlavorId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      treat.User = currentUser;
       _db.Treats.Add(treat);
       if (FlavorId != 0)
       {
