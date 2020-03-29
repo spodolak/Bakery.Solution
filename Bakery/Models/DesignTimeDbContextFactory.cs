@@ -7,7 +7,6 @@ namespace Bakery.Models
 {
   public class BakeryContextFactory : IDesignTimeDbContextFactory<BakeryContext>
   {
-
     BakeryContext IDesignTimeDbContextFactory<BakeryContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()

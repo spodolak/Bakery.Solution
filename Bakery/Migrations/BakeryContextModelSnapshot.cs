@@ -74,7 +74,11 @@ namespace Bakery.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("FlavorId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Flavors");
                 });
@@ -218,6 +222,13 @@ namespace Bakery.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Bakery.Models.Flavor", b =>
+                {
+                    b.HasOne("Bakery.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Bakery.Models.FlavorTreat", b =>
