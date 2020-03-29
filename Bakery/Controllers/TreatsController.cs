@@ -31,9 +31,11 @@ namespace Bakery.Controllers
       return View(userTreats);
     }
 
-    public ActionResult Create()
+    public async Task<ActionResult> Create()
     {
-      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Description");
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      ViewBag.FlavorId = new SelectList(_db.Flavors.Where(entry => entry.User.Id == currentUser.Id), "FlavorId", "Description");
       return View();
     }
 
