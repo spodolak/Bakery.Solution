@@ -8,8 +8,11 @@
 @if (User.Identity.IsAuthenticated)
 {
 @Html.Partial("Header")
-  <h1>Hello @User.Identity.Name!</h1>
-  <h2>Lets get baking.</h2>
+  <h1>Are you sure you want to log out @User.Identity.Name?</h1>
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    <input type="submit" class="button" value="LOG OUT" />
+  }
 }
 else
 {

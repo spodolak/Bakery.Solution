@@ -4,8 +4,8 @@
 @Html.Partial("Header")
 @model Bakery.Models.Treat
 
-<h1>DELETE THIS TREAT?</h1>
-<h4>@Html.DisplayFor(model => model.Description)</h4>
+<h1>DELETE THIS TREAT TYPE?</h1>
+<h2>@Html.DisplayFor(model => model.Description)</h4>
 @using (Html.BeginForm())
 {
   <input type="submit" class="button" value="CONFIRM DELETION" />

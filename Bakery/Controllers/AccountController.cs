@@ -67,5 +67,10 @@ namespace Bakery.Controllers
       await _signInManager.SignOutAsync();
       return RedirectToAction("Index");
     }
+    
+    public ActionResult LogOut()
+    {
+      return View();
+    }
   }
 }
