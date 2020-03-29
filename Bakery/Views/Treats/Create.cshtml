@@ -1,7 +1,7 @@
 @{
   Layout = "_Layout";
 }
-
+@Html.Partial("Header")
 @model Bakery.Models.Treat
 
 <h4>ADD TREAT</h4>
@@ -13,5 +13,5 @@
   <br>
   @Html.Label("Select Flavor")
   @Html.DropDownList("FlavorId")
-  <input type="submit" value="ADD TREAT" class="btn-default" />
+  <input type="submit" value="ADD TREAT" class="button" />
 }

@@ -1,7 +1,7 @@
 @{
   Layout = "_Layout";
 }
-
+@Html.Partial("Header")
 @using Bakery.Models;
 @model Bakery.Models.Flavor;
 
@@ -14,7 +14,7 @@
   @Html.LabelFor(model => model.Description)
   @Html.EditorFor(model => model.Description)
   <br>
-  <input type="submit" class="btn-block" value="SAVE" />
+  <input type="submit" class="button" value="SAVE" />
 }
 
 @Html.ActionLink("SHOW ALL FLAVORS", "Index", "Flavors", null, new { @class = "btn-block" })

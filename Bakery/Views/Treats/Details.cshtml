@@ -1,35 +1,30 @@
 @{
   Layout = "_Layout";
 }
-
+@Html.Partial("Header")
 @using Bakery.Models;
 @model Bakery.Models.Treat;
 
-<h1>@Html.DisplayFor(model => model.Description)</h1>
-<hr />
+<h1>Current @Html.DisplayFor(model => model.Description) Flavors:</h1>
+<br />
 @if (@Model.Flavors.Count == 0)
 {
   <h4>No Flavors found</h4>
 }
 else
 {
-  <h4>Current Flavors</h4>
   <ul>
     @foreach(var join in Model.Flavors)
     {
       <li><a href="/Flavors/Details/@join.FlavorId">@join.Flavor.Description</a>
-      @using (Html.BeginForm("DeleteFlavor", "Treats"))
+      @using (Html.BeginForm("DeleteFlavor", "Flavors"))
       {
         @Html.Hidden("joinId", @join.FlavorTreatId)
-        <input type="submit" class="btn" value="DELETE THIS Flavor"/>
+        <input type="submit" class="button" value="DELETE THIS FLAVOR"/>
       } </li>
     }
   </ul>
 }
-
-<div class="four-buttons">
-  @Html.ActionLink("ADD FLAVOR", "AddFlavor", "Treats", new { id = Model.TreatId}, new { @class="btn" })
-  @Html.ActionLink("VIEW ALL TREATS", "Index", "Treats", null, new { @class = "btn" })
-  @Html.ActionLink("EDIT DETAILS", "Edit", "Treats", new { id = Model.TreatId }, new { @class = "btn" })
-  @Html.ActionLink("DELETE TREATS", "Delete", "Treats", new { id = Model.TreatId }, new { @class = "btn" })
-</div>
+@Html.ActionLink("ADD FLAVOR", "AddFlavor", "Treats", new { id = Model.TreatId})
+@Html.ActionLink("EDIT DETAILS", "Edit", "Treats", new { id = Model.TreatId })
+@Html.ActionLink("DELETE TREATS", "Delete", "Treats", new { id = Model.TreatId })

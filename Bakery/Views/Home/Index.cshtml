@@ -2,6 +2,6 @@
   Layout = "_Layout";
 }
 
-@Html.ActionLink("View Flavors", "Index", "Flavors", null, new { @class = "btn" })
-@Html.ActionLink("View Treats", "Index", "Treats",  null, new { @class = "btn" })
-@Html.ActionLink("Create an account", "Index", "Account")
+<div id="header">Welcome to Pierre's Bakery!</div>
+@Html.ActionLink("Create an account", "Register", "Account")
+@Html.ActionLink("Log in", "Login", "Account")

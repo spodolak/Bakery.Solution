@@ -1,7 +1,7 @@
 @{
   Layout = "_Layout";
 }
-
+@Html.Partial("Header")
 @model Bakery.Models.Treat
 
 <h1>EDIT THIS TREAT: @Html.DisplayFor(model => model.Description)</h1>
@@ -13,5 +13,5 @@
   @Html.LabelFor(model => model.Description)
   @Html.TextBoxFor(model => model.Description)
 
-  <input type="submit" class="btn-block" value="SAVE CHANGES" />
+  <input type="submit" class="button" value="SAVE CHANGES" />
 }

@@ -1,18 +1,17 @@
 @{
   Layout = "_Layout";
 }
-
+@Html.Partial("Header")
 @using Bakery.Models;
 @model Bakery.Models.Flavor;
 
-<h1>@Html.DisplayFor(model => model.Description)</h1>
-<hr />
+<h1>@Html.DisplayFor(model => model.Description) treats:</h1>
+<br>
 @if (@Model.Treats.Count == 0)
 {
   <h4>no treats found</h4>
 } else
 {
-  <h4>CURRENT TREATS</h4>
   <ul>
     @foreach (var join in Model.Treats)
     {
@@ -20,10 +19,7 @@
     }
   </ul>
 }
-
-<div class="four-buttons">
-  @Html.ActionLink("ADD Treat", "Create", "Treats", null, new { @class="btn" })
-  @Html.ActionLink("VIEW ALL FLAVORS", "Index", "Flavors", null, new { @class = "btn" })
-  @Html.ActionLink("EDIT DETAILS", "Edit", "Flavors", new { id = Model.FlavorId }, new { @class = "btn" })
-  @Html.ActionLink("DELETE Flavor", "Delete", "Flavors", new { id = Model.FlavorId }, new { @class = "btn" })
-</div>
+<br>
+@Html.ActionLink("ADD TREAT", "Create", "Treats", null)
+@Html.ActionLink("EDIT DETAILS", "Edit", "Flavors", new { id = Model.FlavorId })
+@Html.ActionLink("DELETE FLAVOR", "Delete", "Flavors", new { id = Model.FlavorId })

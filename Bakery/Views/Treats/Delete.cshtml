@@ -1,12 +1,12 @@
 @{
   Layout = "_Layout";
 }
-
+@Html.Partial("Header")
 @model Bakery.Models.Treat
 
 <h1>DELETE THIS TREAT?</h1>
 <h4>@Html.DisplayFor(model => model.Description)</h4>
 @using (Html.BeginForm())
 {
-  <input type="submit" class="btn-block" value="CONFIRM DELETION" />
+  <input type="submit" class="button" value="CONFIRM DELETION" />
 }

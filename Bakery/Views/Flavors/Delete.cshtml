@@ -1,7 +1,7 @@
 @{
   Layout = "_Layout";
 }
-
+@Html.Partial("Header")
 @using Bakery.Models;
 @model Bakery.Models.Flavor;
 
@@ -10,7 +10,7 @@
 
 @using (Html.BeginForm())
 {
-  <input type="submit" value="CONFIRM DELETION" class="btn-block"/>
+  <input type="submit" value="CONFIRM DELETION" class="button"/>
 }
 
 @Html.ActionLink("SHOW ALL FLAVORS", "Index", "Flavors", null, new { @class = "btn-block" })

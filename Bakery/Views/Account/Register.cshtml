@@ -1,9 +1,7 @@
 @{
   Layout = "_Layout";
 }
-
 @using Bakery.ViewModels
-
 @model RegisterViewModel
 
 <h1>Register a new user</h1>
@@ -19,5 +17,5 @@
   @Html.LabelFor(user=> user.ConfirmPassword)
   @Html.PasswordFor(user=> user.ConfirmPassword)
 
-  <input type="submit" value="Register" />
+  <input type="submit" class="button" value="REGISTER" />
 }
