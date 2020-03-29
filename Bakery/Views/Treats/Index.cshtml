@@ -25,3 +25,11 @@ else if (@Model.Item2.Count > 0 )
   <h3>No treats have been added yet!</h3>
   @Html.ActionLink("ADD NEW TREAT", "Create", "Treats", null, new { @class="btn-block"})
 }
+else if (@Model.Item1.Count > 0 )
+{
+  @foreach (Treat treat in Model.Item1 )
+  {
+    <li>@Html.ActionLink($"{treat.Description}", "Details", "Treats", new {id = treat.TreatId})</li>
+  }
+  @Html.ActionLink("ADD NEW TREAT", "Create", "Treats", null, new { @class="btn-block"})
+}

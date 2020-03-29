@@ -86,15 +86,17 @@ namespace Bakery.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddDoctor(int id)
+    public async Task<ActionResult> AddFlavor(int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      ViewBag.FlavorId = new SelectList(_db.Flavors.Where(entry => entry.User.Id == currentUser.Id), "FlavorId", "Description");
       Treat thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
-      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
     }
     
     [HttpPost]
-    public ActionResult AddDoctor(Treat treat, int FlavorId)
+    public ActionResult AddFlavor(Treat treat, int FlavorId)
     {
       if (FlavorId !=0)
       {
@@ -125,7 +127,7 @@ namespace Bakery.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteDoctor(int joinId)
+    public ActionResult DeleteFlavor(int joinId)
     {
       var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
       _db.FlavorTreat.Remove(joinEntry);
