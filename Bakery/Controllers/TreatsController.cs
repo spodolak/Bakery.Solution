@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using Bakery.Models;
 
 namespace Bakery.Controllers
@@ -28,7 +29,10 @@ namespace Bakery.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
-      return View(userTreats);
+      var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      Tuple<List<Treat>, List<Flavor>> tuple;
+      tuple = new Tuple<List<Treat>, List<Flavor>>(userTreats, userFlavors);
+      return View(tuple);
     }
 
     public async Task<ActionResult> Create()
