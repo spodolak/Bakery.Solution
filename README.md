@@ -86,4 +86,4 @@ _Have a bug or an issue with this application? [Open a new issue](https://github
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-Copyright (c) 2020 **_K Wicz_**
+Copyright (c) 2020 **_Steph Podolak_**
